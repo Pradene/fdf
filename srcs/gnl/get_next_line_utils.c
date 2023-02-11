@@ -24,7 +24,7 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
-int	ft_strchr(char *stash)
+int	search_newline(char *stash)
 {
 	int	i;
 

@@ -66,12 +66,7 @@ t_map   get_map(char **map)
     m.points = (t_point **)malloc(sizeof(t_point *) * (m.height));
     i = -1;
     while (++i < m.height)
-    {
         m.points[i] = get_point(map[i], i, m.width);
-        int32_t j = -1;
-        while (++j < m.width)
-            printf("%d ", m.points[i][j].color);
-        printf("\n");
-    }
+    free_map(map);
     return (m);
 }

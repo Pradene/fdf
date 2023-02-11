@@ -1,6 +1,16 @@
 #include "../includes/fdf.h"
 #include "./gnl/get_next_line.h"
 
+void    free_map(char **map)
+{
+    int32_t i;
+
+    i = -1;
+    while (map[++i])
+        free(map[i]);
+    free(map);
+}
+
 static int32_t   count_lines(char *path)
 {
     int32_t fd;
@@ -33,14 +43,14 @@ char    **parse(char *path)
     line = count_lines(path);
     if (!line)
         return (NULL);
-    map = (char **)malloc(sizeof( char *) * (line + 1));
+    map = (char **)malloc(sizeof(char *) * (line + 1));
     if (!map)
         return (NULL);
     fd = open(path, O_RDONLY);
     if (fd < 0)
         return (NULL);
     i = -1;
-    while (++i <= line)
+    while (++i < line)
         map[i] = get_next_line(fd);
     close(fd);
     return (map);
