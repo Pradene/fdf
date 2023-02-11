@@ -13,8 +13,8 @@ void    render_points(t_data *data)
         while (++x < data->map.width)
         {
             height = (int)data->map.points[y][x].z;
-            pixel_put(&data->img, WIDTH / 2 - data->map.width / 2 * 10 + x * 10,
-                HEIGHT / 2 - data->map.height / 2 * 10 + y * 10 + height,
+            pixel_put(&data->img, WIDTH / 2 + x * 16 / 2 - y * 16 / 2,
+                HEIGHT / 2 - (data->map.height * 8 / 2) + y * 8 / 2 + x * 8 / 2,
                 0xFFFF00);
         }
     }
