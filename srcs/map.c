@@ -8,7 +8,7 @@ static int32_t get_width(char *s)
     i = 0;
     width = 0;
     while (s[++i])
-        if (s[i] == ' ' && s[i - 1] != ' ')
+        if ((s[i] == ' ' || s[i] == '\0' || s[i] == '\n') && s[i - 1] != ' ')
             ++width;
     return (width);
 }
@@ -30,8 +30,8 @@ static int32_t get_next(char *s)
     int32_t i;
 
     i = 0;
-    while (s[++i])
-        if (s[i - 1] == ' ' && s[i] != ' ')
+    while (s[++i] && s[i] != '\n')
+        if (s[i - 1] == ' ' && s[i] != ' ' )
             break ;
     return (i);
 }
@@ -44,7 +44,7 @@ t_point *get_point(char *s, int32_t height, int32_t width)
 
     i = -1;
     j = 0;
-    points = (t_point *)malloc(sizeof(t_point) * (width + 1));
+    points = (t_point *)malloc(sizeof(t_point) * (width));
     while (++i < width)
     {
         points[i].color = get_color(&s[j]);

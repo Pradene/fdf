@@ -1,10 +1,36 @@
 #include "../includes/fdf.h"
 
+int     get_max(int n1, int n2)
+{
+    if (n1 > n2)
+        return (n1);
+    return (n2);
+}
+
+void    render_line(t_data *data, t_point p1, t_point p2)
+{
+    int32_t step;
+    int32_t posx;
+    int32_t posy;
+    int     max;
+
+    step = -1;
+    max = (p2.x - p1.x) % 2 * 2 - 1;
+    while (++step < 8)
+    {
+        posy = HEIGHT / 2 - (data->map.height * 8 / 2) + p1.y * 8 / 2 +
+            p1.x * 8 / 2 - (int)data->map.points[p1.y][p1.x].z * 4 + step / 2;
+        posx = WIDTH / 2 + ((data->map.height - data->map.width) * 8 / 2) +
+            p1.x * 16 / 2 - p1.y * 16 / 2 + max * step;
+        if (posx >= 0 && posx <= WIDTH && posy >= 0 && posy <= HEIGHT)
+            pixel_put(&data->img, posx, posy, data->map.points[p1.y][p1.x].color);
+    }
+}
+
 void    render_points(t_data *data)
 {
     int32_t y;
     int32_t x;
-    int     height;
 
     y = -1;
     while (++y < data->map.height)
@@ -12,10 +38,10 @@ void    render_points(t_data *data)
         x = -1;
         while (++x < data->map.width)
         {
-            height = (int)data->map.points[y][x].z;
-            pixel_put(&data->img, WIDTH / 2 + x * 16 / 2 - y * 16 / 2,
-                HEIGHT / 2 - (data->map.height * 8 / 2) + y * 8 / 2 + x * 8 / 2,
-                0xFFFF00);
+            if (y + 1 != data->map.height)
+                render_line(data, data->map.points[y][x], data->map.points[y + 1][x]);
+            if (x + 1 != data->map.width)
+                render_line(data, data->map.points[y][x], data->map.points[y][x + 1]);
         }
     }
 }

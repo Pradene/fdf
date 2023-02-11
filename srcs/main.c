@@ -10,6 +10,7 @@ int quit(t_data *data)
     while (++i < m.height)
         free(m.points[i]);
     free(m.points);
+    mlx_destroy_image(data->id, data->img.image);
     mlx_destroy_window(data->id, data->win);
     mlx_destroy_display(data->id);
     free(data->id);
