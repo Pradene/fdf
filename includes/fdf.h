@@ -16,6 +16,9 @@
 # include <stdio.h>
 # include <string.h>
 
+# define WIDTH 900
+# define HEIGHT 600
+
 typedef struct s_point
 {
     int32_t   y;
@@ -23,6 +26,15 @@ typedef struct s_point
     int32_t   z;
     int32_t   color;
 }   t_point;
+
+typedef struct s_image
+{
+	void	*image;
+	char	*data;
+	int		bpp;
+	int		size_line;
+	int		endian;
+}	t_image;
 
 typedef struct s_map
 {
@@ -33,9 +45,10 @@ typedef struct s_map
 
 typedef struct s_data
 {
-    void    *id;
-    void    *win;
-    t_map   map;
+    void        *id;
+    void        *win;
+    t_image     img;
+    t_map       map;
 }   t_data;
 
 // GNL
@@ -57,5 +70,6 @@ int     quit(t_data *data);
 // WINDOW
 void    window(t_data *data);
 int     key(int keycode, t_data *data);
+void    pixel_put(t_image *img, int x, int y, int color);
 
 #endif

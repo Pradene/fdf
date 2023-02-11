@@ -5,6 +5,7 @@ FILES	= gnl/get_next_line_utils.c \
 		map.c \
 		main.c \
 		parse.c \
+		pixel_put.c \
 		window.c
 
 SRCS	= $(addprefix srcs/, $(FILES))
