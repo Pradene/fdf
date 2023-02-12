@@ -57,11 +57,6 @@ static void render_line(t_data *data, t_point p1, t_point p2)
     i = -1;
     while (++i < steps)
     {
-        if ((pos1.x + (pos2.x - pos1.x) * i / steps) < 0
-            || (pos1.x + (pos2.x - pos1.x) * i / steps) >= WIDTH
-            || (pos1.y + (pos2.y - pos1.y) * i / steps) < 0
-            || (pos1.y + (pos2.y - pos1.y) * i / steps) >= HEIGHT)
-            continue ;
         pixel_put(&data->img,
         pos1.x + (pos2.x - pos1.x) * i / steps,
         pos1.y + (pos2.y - pos1.y) * i / steps,
@@ -69,16 +64,28 @@ static void render_line(t_data *data, t_point p1, t_point p2)
     }
 }
 
+void    reinitialize_img(t_image *img)
+{
+    int32_t x;
+    int32_t y;
+
+    y = -1;
+    while (++y < HEIGHT)
+    {
+        x = -1;
+        while (++x < WIDTH)
+            pixel_put(img, x, y, 0x000000);
+    }
+}
+
 static void render_map(t_data *data)
 {
     int32_t y;
     int32_t x;
-    int32_t posx;
-    int32_t posy;
+    t_pos  pos;
 
     y = -1;
-    posx = 0;
-    posy = 0;
+    reinitialize_img(&data->img);
     while (++y < data->map.height)
     {
         x = -1;
@@ -89,10 +96,11 @@ static void render_map(t_data *data)
             if (x + 1 != data->map.width)
                 render_line(data, data->map.points[y][x], data->map.points[y][x + 1]);
             if ((x == data->map.width - 1) && (y == data->map.height - 1))
-                pixel_put(&data->img,
-                    get_pos(data, data->map.points[y][x], 12).x,
-                    get_pos(data, data->map.points[y][x], 12).y,
+            {
+                pos = get_pos(data, data->map.points[y][x], 12);
+                pixel_put(&data->img, pos.x, pos.y,
                     data->map.points[y][x].color);
+            }
         }
     }
 }
