@@ -29,6 +29,8 @@ int main(int argc, char **argv)
     if (!map)
         return (0);
     data.map = get_map(map);
+    data.offx = 0;
+    data.offy = 0;
     window(&data);
     return (0);
 }

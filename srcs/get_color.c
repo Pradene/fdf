@@ -27,9 +27,12 @@ int32_t get_color(char *s)
 {
     int32_t i;
 
-    i = -1;
-    while (s[++i] != ' ')
+    i = 0;
+    while (s[i] != ' ' && s[i] != '\n')
+    {
         if (s[i] == ',')
             return (parse_color(&s[i + 1], "0123456789ABCDEF"));
+        ++i;
+    }
     return (-1);
 }

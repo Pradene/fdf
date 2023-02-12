@@ -31,7 +31,7 @@ static int32_t get_next(char *s)
 
     i = 0;
     while (s[++i] && s[i] != '\n')
-        if (s[i - 1] == ' ' && s[i] != ' ' )
+        if (s[i - 1] == ' ' && s[i] != ' ')
             break ;
     return (i);
 }

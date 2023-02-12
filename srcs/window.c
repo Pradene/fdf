@@ -7,32 +7,63 @@ int     get_max(int n1, int n2)
     return (n2);
 }
 
+int    get_offy(t_data *data, int d)
+{
+    return (data->offy + HEIGHT / 2 - ((data->map.height + data->map.width) * d / 2) / 2);
+}
+
+int    get_offx(t_data *data, int d)
+{
+    return (data->offx + WIDTH / 2 + ((data->map.height - data->map.width) * d / 2));
+}
+
+t_pos   get_pos(t_data *data, t_point p, int d)
+{
+    t_pos   pos;
+
+    pos.x = get_offx(data, d) + (p.x - p.y) * d;
+    pos.y = get_offy(data, d) + (p.y + p.x - p.z) * d / 2;
+    return (pos);
+}
+
 void    render_line(t_data *data, t_point p1, t_point p2)
 {
-    int32_t step;
-    int32_t posx;
-    int32_t posy;
-    int     max;
+    t_pos   pos1;
+    t_pos   pos2;
+    int32_t steps;
+    int32_t i;
 
-    step = -1;
-    max = (p2.x - p1.x) % 2 * 2 - 1;
-    while (++step < 8)
+    pos1 = get_pos(data, p1, 12);
+    pos2 = get_pos(data, p2, 12);
+    if (abs(pos1.x - pos2.x) > abs(pos1.y - pos2.y))
+        steps = abs(pos1.x - pos2.x);
+    else
+        steps = abs(pos1.y - pos2.y);
+    i = -1;
+    while (++i < steps)
     {
-        posy = HEIGHT / 2 - (data->map.height * 8 / 2) + p1.y * 8 / 2 +
-            p1.x * 8 / 2 - (int)data->map.points[p1.y][p1.x].z * 4 + step / 2;
-        posx = WIDTH / 2 + ((data->map.height - data->map.width) * 8 / 2) +
-            p1.x * 16 / 2 - p1.y * 16 / 2 + max * step;
-        if (posx >= 0 && posx <= WIDTH && posy >= 0 && posy <= HEIGHT)
-            pixel_put(&data->img, posx, posy, data->map.points[p1.y][p1.x].color);
+        if ((pos1.x + (pos2.x - pos1.x) * i / steps) < 0
+            || (pos1.x + (pos2.x - pos1.x) * i / steps) >= WIDTH
+            || (pos1.y + (pos2.y - pos1.y) * i / steps) < 0
+            || (pos1.y + (pos2.y - pos1.y) * i / steps) >= HEIGHT)
+            continue ;
+        pixel_put(&data->img,
+        pos1.x + (pos2.x - pos1.x) * i / steps,
+        pos1.y + (pos2.y - pos1.y) * i / steps,
+        p1.color);
     }
 }
 
-void    render_points(t_data *data)
+void    render_map(t_data *data)
 {
     int32_t y;
     int32_t x;
+    int32_t posx;
+    int32_t posy;
 
     y = -1;
+    posx = 0;
+    posy = 0;
     while (++y < data->map.height)
     {
         x = -1;
@@ -50,7 +81,7 @@ static int  render(t_data *data)
 {
     if (!data->win)
         return (1);
-    render_points(data);
+    render_map(data);
     mlx_put_image_to_window(data->id, data->win, data->img.image, 0, 0);
     return (0);
 }

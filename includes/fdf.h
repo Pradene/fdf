@@ -19,6 +19,12 @@
 # define WIDTH 900
 # define HEIGHT 600
 
+typedef struct s_pos
+{
+    int32_t x;
+    int32_t y;
+}   t_pos;
+
 typedef struct s_point
 {
     int32_t   y;
@@ -49,6 +55,8 @@ typedef struct s_data
     void        *win;
     t_image     img;
     t_map       map;
+    int32_t     offx;
+    int32_t     offy;
 }   t_data;
 
 // GNL
