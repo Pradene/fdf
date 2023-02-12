@@ -26,7 +26,22 @@ t_pos   get_pos(t_data *data, t_point p, int d)
     return (pos);
 }
 
-void    render_line(t_data *data, t_point p1, t_point p2)
+int get_rgb(int c1, int c2, int percent)
+{
+    int32_t r;
+    int32_t g;
+    int32_t b;
+
+    r = (c1 >> (8 * 2) & 0xFF) + percent * ((c2 >> (8 * 2) & 0xFF)
+        - (c1 >> (8 * 2) & 0xFF)) / 100;
+    g = (c1 >> (8 * 1) & 0xFF) + percent * ((c2 >> (8 * 1) & 0xFF)
+        - (c1 >> (8 * 1) & 0xFF)) / 100;
+    b = (c1 >> (8 * 0) & 0xFF) + percent * ((c2 >> (8 * 0) & 0xFF)
+        - (c1 >> (8 * 0) & 0xFF)) / 100;
+    return ((r << (8 * 2)) + (g << (8 * 1)) + (b << (8 * 0)));
+}
+
+static void render_line(t_data *data, t_point p1, t_point p2)
 {
     t_pos   pos1;
     t_pos   pos2;
@@ -50,11 +65,11 @@ void    render_line(t_data *data, t_point p1, t_point p2)
         pixel_put(&data->img,
         pos1.x + (pos2.x - pos1.x) * i / steps,
         pos1.y + (pos2.y - pos1.y) * i / steps,
-        p1.color);
+        get_rgb(p1.color, p2.color, i * 100 / steps));
     }
 }
 
-void    render_map(t_data *data)
+static void render_map(t_data *data)
 {
     int32_t y;
     int32_t x;
@@ -73,6 +88,11 @@ void    render_map(t_data *data)
                 render_line(data, data->map.points[y][x], data->map.points[y + 1][x]);
             if (x + 1 != data->map.width)
                 render_line(data, data->map.points[y][x], data->map.points[y][x + 1]);
+            if ((x == data->map.width - 1) && (y == data->map.height - 1))
+                pixel_put(&data->img,
+                    get_pos(data, data->map.points[y][x], 12).x,
+                    get_pos(data, data->map.points[y][x], 12).y,
+                    data->map.points[y][x].color);
         }
     }
 }
@@ -86,7 +106,7 @@ static int  render(t_data *data)
     return (0);
 }
 
-void    window(t_data *data)
+void    run(t_data *data)
 {
     data->id = mlx_init();
     if (!data->id)

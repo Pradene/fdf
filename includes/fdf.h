@@ -76,7 +76,7 @@ t_map   get_map(char **map);
 int     quit(t_data *data);
 
 // WINDOW
-void    window(t_data *data);
+void    run(t_data *data);
 int     key(int keycode, t_data *data);
 void    pixel_put(t_image *img, int x, int y, int color);
 
