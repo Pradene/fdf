@@ -20,7 +20,7 @@ static int32_t	parse_color(char *s, char *base)
 
 	i = -1;
 	color = 0;
-	while (s[++i] != 'x')
+	while (s[i] && s[++i] != 'x')
 		;
 	while (s[++i] && s[i] != '\n' && s[i] != ' ')
 	{

@@ -57,6 +57,7 @@ typedef struct s_data
     t_map       map;
     int32_t     offx;
     int32_t     offy;
+    uint32_t    distance;
 }   t_data;
 
 // GNL

@@ -14,6 +14,10 @@
 
 int	key(int keycode, t_data *data)
 {
+	if (keycode == 61)
+		data->distance += 1;
+	else if (keycode == 45 && data->distance > 1)
+		data->distance -= 1;
 	if (keycode == 97)
 		data->offx -= 1;
 	else if (keycode == 100)

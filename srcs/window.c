@@ -62,8 +62,8 @@ static void	render_line(t_data *data, t_point p1, t_point p2)
 	int32_t	steps;
 	int32_t	i;
 
-	pos1 = get_pos(data, p1, 12);
-	pos2 = get_pos(data, p2, 12);
+	pos1 = get_pos(data, p1, data->distance);
+	pos2 = get_pos(data, p2, data->distance);
 	if (abs(pos1.x - pos2.x) > abs(pos1.y - pos2.y))
 		steps = abs(pos1.x - pos2.x);
 	else
@@ -113,7 +113,7 @@ static void	render_map(t_data *data)
 					data->map.points[y][x + 1]);
 			if ((x == data->map.width - 1) && (y == data->map.height - 1))
 			{
-				pos = get_pos(data, data->map.points[y][x], 12);
+				pos = get_pos(data, data->map.points[y][x], data->distance);
 				pixel_put(&data->img, pos.x, pos.y,
 					data->map.points[y][x].color);
 			}
