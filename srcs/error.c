@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lpradene <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/12 20:45:28 by lpradene          #+#    #+#             */
+/*   Updated: 2023/02/12 20:45:30 by lpradene         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fdf.h"
 
-void    error(t_map *m, char *s)
+void	error(t_map *m, char *s)
 {
-    write(1, s, strlen(s));
-    quit(m);
-    exit(EXIT_FAILURE);
+	write(1, s, strlen(s));
+	quit(m);
+	exit(EXIT_FAILURE);
 }
