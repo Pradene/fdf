@@ -12,8 +12,23 @@
 
 #include "../includes/fdf.h"
 
+void	rotate(uint32_t *angle, int way)
+{
+	int	max;
+
+	max = 360;
+	if (way == -1 && *angle == 0)
+		*angle = max - 1;
+	else
+		*angle = (*angle + way) % max;
+}
+
 int	key(int keycode, t_data *data)
 {
+	if (keycode == 114)
+		rotate(&data->angle, +1);
+	else if (keycode == 101)
+		rotate(&data->angle, -1);
 	if (keycode == 61)
 		data->distance += 1;
 	else if (keycode == 45 && data->distance > 1)
