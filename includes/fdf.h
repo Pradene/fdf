@@ -9,6 +9,9 @@
 
 # include <unistd.h>
 
+# include <math.h>
+# include <time.h>
+
 # include "../mlx_linux/mlx.h"
 # include "../mlx_linux/mlx_int.h"
 
@@ -58,6 +61,7 @@ typedef struct s_data
     int32_t     offx;
     int32_t     offy;
     uint32_t    distance;
+    uint32_t    angle;
 }   t_data;
 
 // GNL

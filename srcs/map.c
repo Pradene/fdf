@@ -42,10 +42,13 @@ static int32_t	get_next(char *s)
 	int32_t	i;
 
 	i = 0;
-	while (s[++i] && s[i] != '\n')
-		if (s[i - 1] == ' ' && s[i] != ' ')
+	while (s[i] && s[i] != '\n')
+	{
+		if (s[i] == ' ' && s[i + 1] != ' ')
 			break ;
-	return (i);
+		++i;
+	}
+	return (++i);
 }
 
 t_point	*get_point(char *s, int32_t height, int32_t width)
@@ -54,8 +57,10 @@ t_point	*get_point(char *s, int32_t height, int32_t width)
 	int32_t	i;
 	int32_t	j;
 
-	i = -1;
 	j = 0;
+	while (s[j] == ' ')
+		++j;
+	i = -1;
 	points = (t_point *)malloc(sizeof(t_point) * (width));
 	while (++i < width)
 	{

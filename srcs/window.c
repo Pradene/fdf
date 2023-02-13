@@ -12,6 +12,11 @@
 
 #include "../includes/fdf.h"
 
+float	get_radian(int angle)
+{
+	return ((float)angle * (3.14 / 180));
+}
+
 int	get_max(int n1, int n2)
 {
 	if (n1 > n2)
@@ -19,24 +24,29 @@ int	get_max(int n1, int n2)
 	return (n2);
 }
 
-int	get_offy(t_data *data, int d)
+int	get_offy(t_data *data)
 {
-	return (data->offy + HEIGHT / 2
-		- ((data->map.height + data->map.width) * d / 2) / 2);
+	return (data->offy + HEIGHT / 2)
+			- sin(get_radian(data->angle)) * (data->map.width * data->distance / 2 / 2)
+			- cos(get_radian(data->angle)) * (data->map.height * data->distance / 2 / 2);
 }
 
-int	get_offx(t_data *data, int d)
+int	get_offx(t_data *data)
 {
-	return (data->offx + WIDTH / 2
-		+ ((data->map.height - data->map.width) * d / 2));
+	return (data->offx + WIDTH / 2)
+			- cos(get_radian(data->angle)) * (data->map.width * data->distance / 2)
+			+ sin(get_radian(data->angle)) * (data->map.height * data->distance / 2);
 }
 
 t_pos	get_pos(t_data *data, t_point p, int d)
 {
 	t_pos	pos;
+	float	radian;
 
-	pos.x = get_offx(data, d) + (p.x - p.y) * d;
-	pos.y = get_offy(data, d) + (p.y + p.x - p.z) * d / 2;
+	radian = data->angle * (3.14 / 180);
+	pos.x = get_offx(data) + cos(radian) * (p.x * d)  - sin(radian) * (p.y * d);
+	pos.y = get_offy(data) + sin(radian) * (p.x * d / 2) + cos(radian) * (p.y * d / 2)
+			- p.z * d / 2;
 	return (pos);
 }
 
