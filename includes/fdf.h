@@ -19,14 +19,21 @@
 # include <stdio.h>
 # include <string.h>
 
-# define WIDTH 900
-# define HEIGHT 600
+# define WIDTH 1280
+# define HEIGHT 720
+# define PI 3.14159265359
 
 typedef struct s_pos
 {
     int32_t x;
     int32_t y;
 }   t_pos;
+
+typedef struct s_gradient
+{
+    int32_t c1;
+    int32_t c2;
+}   t_gradient;
 
 typedef struct s_point
 {
@@ -62,6 +69,7 @@ typedef struct s_data
     int32_t     offy;
     uint32_t    distance;
     uint32_t    angle;
+    uint32_t    view;
 }   t_data;
 
 // GNL
@@ -74,11 +82,23 @@ void    free_map(char **map);
 // COLOR
 int32_t get_color(char *s);
 
+// UTILS
+int         get_max(int n1, int n2);
+int         get_rgb(int c1, int c2, int percent);
+t_gradient  get_gradient(int32_t c1, int32_t c2);
+void	    render_line(t_data *data, t_pos p1, t_pos p2, t_gradient colors);
+
 // MAP
 t_map   get_map(char **map);
 
 // QUIT
 int     quit(t_data *data);
+
+// ISO
+void	draw_iso(t_data *data);
+
+// SPHERE
+void    draw_sphere(t_data *data);
 
 // WINDOW
 void    run(t_data *data);

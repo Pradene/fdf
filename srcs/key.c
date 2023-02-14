@@ -25,6 +25,8 @@ void	rotate(uint32_t *angle, int way)
 
 int	key(int keycode, t_data *data)
 {
+	if (keycode == 99)
+		data->view = (data->view + 1) % 2;
 	if (keycode == 114)
 		rotate(&data->angle, +1);
 	else if (keycode == 101)

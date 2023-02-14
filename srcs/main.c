@@ -45,6 +45,7 @@ int	main(int argc, char **argv)
 	data.offy = 0;
     data.distance = 32;
 	data.angle = 45;
+	data.view = 0;
 	run(&data);
 	return (0);
 }
