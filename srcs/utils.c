@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lpradene <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/14 03:57:22 by lpradene          #+#    #+#             */
+/*   Updated: 2023/02/14 03:57:24 by lpradene         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fdf.h"
 
 int	get_max(int n1, int n2)
@@ -22,13 +34,13 @@ int	get_rgb(int c1, int c2, int percent)
 	return ((r << (8 * 2)) + (g << (8 * 1)) + (b << (8 * 0)));
 }
 
-t_gradient  get_gradient(int32_t c1, int32_t c2)
+t_gradient	get_gradient(int32_t c1, int32_t c2)
 {
-    t_gradient  colors;
+	t_gradient	colors;
 
-    colors.c1 = c1;
-    colors.c2 = c2;
-    return (colors);
+	colors.c1 = c1;
+	colors.c2 = c2;
+	return (colors);
 }
 
 void	render_line(t_data *data, t_pos p1, t_pos p2, t_gradient colors)
@@ -36,7 +48,7 @@ void	render_line(t_data *data, t_pos p1, t_pos p2, t_gradient colors)
 	int32_t	steps;
 	int32_t	i;
 
-   	if (abs(p1.x - p2.x) > abs(p1.y - p2.y))
+	if (abs(p1.x - p2.x) > abs(p1.y - p2.y))
 		steps = abs(p1.x - p2.x);
 	else
 		steps = abs(p1.y - p2.y);

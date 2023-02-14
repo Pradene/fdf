@@ -6,7 +6,7 @@
 /*   By: lpradene <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 20:38:20 by lpradene          #+#    #+#             */
-/*   Updated: 2023/02/12 20:38:37 by lpradene         ###   ########.fr       */
+/*   Updated: 2023/02/14 03:52:32 by lpradene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 	data.map = get_map(map);
 	data.offx = 0;
 	data.offy = 0;
-    data.distance = 32;
+	data.distance = 32;
 	data.angle = 45;
 	data.view = 0;
 	run(&data);
