@@ -71,6 +71,9 @@ typedef struct s_data
     uint32_t    angle;
     uint32_t    view;
     float       matrix[4][4];
+    uint32_t    angleX;
+    uint32_t    angleY;
+    uint32_t    angleZ;
 }   t_data;
 
 // GNL

@@ -27,13 +27,33 @@ static float	map(int n, int min1, int max1, float min2, float max2)
 	return (min2 + (n - min1) * (max2 - min2) / (max1 - min1));
 }
 
-static t_point	get_p(float m[4][4], t_point p)
+static t_point	get_x(t_point p, float radian)
 {
 	t_point	point;
 
-	point.x = p.x * m[0][0] + p.y * m[1][0] + p.z * m[2][0] + m[3][0];
-	point.y = p.x * m[0][1] + p.y * m[1][1] + p.z * m[2][1] + m[3][1];
-	point.z = p.x * m[0][2] + p.y * m[1][2] + p.z * m[2][2] + m[3][2];
+	point.x = p.x * 1 + p.y * 0 + p.z * 0;
+	point.y = p.x * 0 + p.y * cos(radian) + p.z * sin(radian);
+	point.z = p.x * 0 + p.y * -sin(radian) + p.z * cos(radian);
+	return (point);
+}
+
+static t_point	get_y(t_point p, float radian)
+{
+	t_point	point;
+
+	point.x = p.x * cos(radian) + p.y * 0 + p.z * sin(radian);
+	point.y = p.x * 0 + p.y * 1 + p.z * 0;
+	point.z = p.x * -sin(radian) + p.y * 0 + p.z * cos(radian);
+	return (point);
+}
+
+static t_point	get_z(t_point p, float radian)
+{
+	t_point	point;
+
+	point.x = p.x * cos(radian) + p.y * -sin(radian) + p.z * 0;
+	point.y = p.x * sin(radian) + p.y * cos(radian) + p.z * 0;
+	point.z = p.x * 0 + p.y * 0 + p.z * 1;
 	return (point);
 }
 
@@ -50,7 +70,6 @@ static t_point	get_point(t_data *data, t_point p, int x, int y)
 	point.x = r * sin(lon) * cos(lat);
 	point.y = r * sin(lon) * sin(lat);
 	point.z = r * cos(lon);
-	point = get_p(data->matrix, point);
 	return (point);
 }
 
@@ -60,8 +79,11 @@ static t_pos	get_pos(t_data *data, t_point p, int x, int y)
 	t_point	point;
 
 	point = get_point(data, p, x, y);
-	pos.x = get_offx(data) + point.x / get_max(1, (-point.z));
-	pos.y = get_offy(data) + point.y / get_max(1, (-point.z));
+	point = get_x(point, get_radian(data->angleX));
+	point = get_y(point, get_radian(data->angleY));
+	point = get_z(point, get_radian(data->angleZ));
+	pos.x = get_offx(data) + point.x;
+	pos.y = get_offy(data) + point.y;
 	return (pos);
 }
 

@@ -32,17 +32,17 @@ int	quit(t_data *data)
 
 void	initialize_matrix(float matrix[4][4])
 {
-	matrix[0][0] = 0.36;
-	matrix[0][1] = 0.48;
-	matrix[0][2] = -0.8;
+	matrix[0][0] = 1.0;
+	matrix[0][1] = 0.0;
+	matrix[0][2] = 0.0;
 	matrix[0][3] = 0.0;
-	matrix[1][0] = -0.8;
-	matrix[1][1] = 0.6;
+	matrix[1][0] = 0.0;
+	matrix[1][1] = 1.0;
 	matrix[1][2] = 0.0;
 	matrix[1][3] = 0.0;
-	matrix[2][0] = 0.48;
-	matrix[2][1] = 0.65;
-	matrix[2][2] = 0.6;
+	matrix[2][0] = 0.0;
+	matrix[2][1] = 0.0;
+	matrix[2][2] = 1.0;
 	matrix[2][3] = 0.0;
 	matrix[3][0] = 0.0;
 	matrix[3][1] = 0.0;
@@ -66,6 +66,8 @@ int	main(int argc, char **argv)
 	data.distance = 32;
 	data.angle = 0;
 	data.view = 0;
+	data.angleX = 45;
+	data.angleY = 0;
 	initialize_matrix(data.matrix);
 	run(&data);
 	return (0);
