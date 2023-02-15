@@ -12,11 +12,6 @@
 
 #include "../includes/fdf.h"
 
-static float	get_radian(int angle)
-{
-	return ((float)angle * (PI / 180));
-}
-
 static int	get_offy(t_data *data)
 {
 	return (data->offy + HEIGHT / 2

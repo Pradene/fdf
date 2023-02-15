@@ -12,7 +12,7 @@
 
 #include "../includes/fdf.h"
 
-void	reinitialize_img(t_image *img)
+static void	reinitialize_img(t_image *img)
 {
 	int32_t	x;
 	int32_t	y;
@@ -29,9 +29,9 @@ void	reinitialize_img(t_image *img)
 static void	draw_view(t_data *data)
 {
 	if (data->view == 0)
-		draw_sphere(data);
-	else if (data->view == 1)
 		draw_iso(data);
+	else if (data->view == 1)
+		draw_sphere(data);
 }
 
 static int	render(t_data *data)

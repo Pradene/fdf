@@ -51,7 +51,7 @@ static int32_t	get_next(char *s)
 	return (++i);
 }
 
-t_point	*get_point(char *s, int32_t height, int32_t width)
+static t_point	*get_point(char *s, int32_t height, int32_t width)
 {
 	t_point	*points;
 	int32_t	i;

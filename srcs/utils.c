@@ -19,6 +19,11 @@ int	get_max(int n1, int n2)
 	return (n2);
 }
 
+float	get_radian(int angle)
+{
+	return ((float)angle * (PI / 180));
+}
+
 int	get_rgb(int c1, int c2, int percent)
 {
 	int32_t	r;

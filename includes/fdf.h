@@ -70,6 +70,7 @@ typedef struct s_data
     uint32_t    distance;
     uint32_t    angle;
     uint32_t    view;
+    float       matrix[4][4];
 }   t_data;
 
 // GNL
@@ -87,6 +88,7 @@ int         get_max(int n1, int n2);
 int         get_rgb(int c1, int c2, int percent);
 t_gradient  get_gradient(int32_t c1, int32_t c2);
 void	    render_line(t_data *data, t_pos p1, t_pos p2, t_gradient colors);
+float	    get_radian(int angle);
 
 // MAP
 t_map   get_map(char **map);

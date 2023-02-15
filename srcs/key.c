@@ -12,7 +12,7 @@
 
 #include "../includes/fdf.h"
 
-void	rotate(uint32_t *angle, int way)
+static void	rotate(uint32_t *angle, int way)
 {
 	int	max;
 
