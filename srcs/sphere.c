@@ -64,7 +64,7 @@ static t_point	get_point(t_data *data, t_point p, int x, int y)
 	float	lon;
 	int32_t	r;
 
-	r = 300 + p.z * 10 / 300;
+	r = data->radius * data->scale + p.z * 10 / data->radius * data->scale;
 	lon = map(y, 0, data->map.height - 1, -PI, PI);
 	lat = map(x, 0, data->map.width - 1, -PI / 2, PI / 2);
 	point.x = r * sin(lon) * cos(lat);
@@ -78,10 +78,14 @@ static t_pos	get_pos(t_data *data, t_point p, int x, int y)
 	t_pos	pos;
 	t_point	point;
 
+	pos.x = -1;
+	pos.y = -1;
 	point = get_point(data, p, x, y);
-	point = get_x(point, get_radian(data->angleX));
-	point = get_y(point, get_radian(data->angleY));
-	point = get_z(point, get_radian(data->angleZ));
+	point = get_x(point, rad(data->angleX));
+	point = get_y(point, rad(data->angleY));
+	point = get_z(point, rad(data->angleZ));
+	if (point.z < 0)
+		return (pos);
 	pos.x = get_offx(data) + point.x;
 	pos.y = get_offy(data) + point.y;
 	return (pos);

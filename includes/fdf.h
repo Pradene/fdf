@@ -19,8 +19,8 @@
 # include <stdio.h>
 # include <string.h>
 
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH 1920
+# define HEIGHT 1080
 # define PI 3.14159265359
 
 typedef struct s_pos
@@ -65,15 +65,15 @@ typedef struct s_data
     void        *win;
     t_image     img;
     t_map       map;
+    uint32_t    view;
     int32_t     offx;
     int32_t     offy;
     uint32_t    distance;
-    uint32_t    angle;
-    uint32_t    view;
-    float       matrix[4][4];
     uint32_t    angleX;
     uint32_t    angleY;
     uint32_t    angleZ;
+    int32_t     radius;
+    float       scale;
 }   t_data;
 
 // GNL
@@ -91,7 +91,7 @@ int         get_max(int n1, int n2);
 int         get_rgb(int c1, int c2, int percent);
 t_gradient  get_gradient(int32_t c1, int32_t c2);
 void	    render_line(t_data *data, t_pos p1, t_pos p2, t_gradient colors);
-float	    get_radian(int angle);
+float	    rad(int angle);
 
 // MAP
 t_map   get_map(char **map);

@@ -19,7 +19,7 @@ int	get_max(int n1, int n2)
 	return (n2);
 }
 
-float	get_radian(int angle)
+float	rad(int angle)
 {
 	return ((float)angle * (PI / 180));
 }
