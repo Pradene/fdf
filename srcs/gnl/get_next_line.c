@@ -17,7 +17,7 @@ char	*get_next_line(int fd)
 	static char	*stash;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= 2048)
 		return (0);
 	read_buf(&stash, fd);
 	if (!stash)
@@ -36,24 +36,17 @@ char	*get_next_line(int fd)
 
 void	read_buf(char **stash, int fd)
 {
-	char	*buf;
+	char	buf[BUFFER_SIZE + 1];
 	int		readc;
 
 	readc = 1;
-	while (!search_newline(*stash) && readc != 0)
+	while (!ft_strchr(*stash) && readc != 0)
 	{
-		buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-		if (!buf)
-			return ;
 		readc = read(fd, buf, BUFFER_SIZE);
 		if ((*stash == NULL && readc == -1) || readc == 0)
-		{
-			free(buf);
 			return ;
-		}
 		buf[readc] = '\0';
 		add_to_stash(stash, buf, readc);
-		free(buf);
 	}
 }
 
@@ -115,3 +108,4 @@ void	clean_stash(char **stash)
 	free(*stash);
 	*stash = s;
 }
+

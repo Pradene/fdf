@@ -29,17 +29,21 @@ static int32_t	count_lines(char *path)
 	int32_t	line;
 	int32_t	readc;
 	char	buf;
+	int		n;
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		return (0);
 	readc = 1;
 	line = 0;
+	n = 1;
 	while (readc)
 	{
 		readc = read(fd, &buf, 1);
-		if (buf == '\n')
+		if (buf != '\n' && n--)
 			++line;
+		else if (buf == '\n')
+			n = 1;
 	}
 	close(fd);
 	return (line);

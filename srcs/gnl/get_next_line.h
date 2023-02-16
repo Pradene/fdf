@@ -29,7 +29,7 @@ void	make_line(char **line, char *stash);
 void	clean_stash(char **stash);
 
 int		ft_strlen(char *s);
-int		search_newline(char *stash);
+int		ft_strchr(char *stash);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 
 #endif 
