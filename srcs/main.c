@@ -43,13 +43,14 @@ int	main(int argc, char **argv)
 	data.map = get_map(map);
 	data.offx = 0;
 	data.offy = 0;
-	data.distance = 6;
+	data.dist = 6;
 	data.view = 0;
 	data.radius = 300;
 	data.angleX = 45;
-	data.angleY = 0;
+	data.angleY = 45;
 	data.angleZ = 0;
 	data.scale = 1.0;
+	data.scale_h = 1.0;
 	run(&data);
 	return (0);
 }

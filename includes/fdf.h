@@ -15,10 +15,6 @@
 # include "../mlx_linux/mlx.h"
 # include "../mlx_linux/mlx_int.h"
 
-// SUP
-# include <stdio.h>
-# include <string.h>
-
 # define WIDTH 1920
 # define HEIGHT 1080
 # define PI 3.14159265359
@@ -68,12 +64,13 @@ typedef struct s_data
     uint32_t    view;
     int32_t     offx;
     int32_t     offy;
-    uint32_t    distance;
+    uint32_t    dist;
     uint32_t    angleX;
     uint32_t    angleY;
     uint32_t    angleZ;
     int32_t     radius;
     float       scale;
+    float       scale_h;
 }   t_data;
 
 // GNL

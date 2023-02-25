@@ -22,11 +22,6 @@ static int	get_offx(t_data *data)
 	return (data->offx + WIDTH / 2);
 }
 
-static float	map(int n, int min1, int max1, float min2, float max2)
-{
-	return (min2 + (n - min1) * (max2 - min2) / (max1 - min1));
-}
-
 static t_point	get_x(t_point p, float radian)
 {
 	t_point	point;
@@ -64,9 +59,10 @@ static t_point	get_point(t_data *data, t_point p, int x, int y)
 	float	lon;
 	int32_t	r;
 
-	r = data->radius * data->scale + p.z * 10 / data->radius * data->scale;
-	lon = map(y, 0, data->map.height - 1, -PI, PI);
-	lat = map(x, 0, data->map.width - 1, -PI / 2, PI / 2);
+	r = data->map.width * 2 * data->scale + p.z * data->scale_h * 0.5
+		* data->scale;
+	lon = -PI + (y - 0) * (PI - -PI) / (data->map.height - 1 - 0);
+	lat = -PI / 2 + (x - 0) * (PI / 2 - -PI / 2) / (data->map.width - 1 - 0);
 	point.x = r * sin(lon) * cos(lat);
 	point.y = r * sin(lon) * sin(lat);
 	point.z = r * cos(lon);

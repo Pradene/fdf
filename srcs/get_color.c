@@ -12,6 +12,13 @@
 
 #include "../includes/fdf.h"
 
+char	cap(char c)
+{
+	if (c >= 'a' && c <= 'z')
+		c -= 32;
+	return (c);
+}
+
 static int32_t	parse_color(char *s, char *base)
 {
 	int32_t	i;
@@ -27,7 +34,7 @@ static int32_t	parse_color(char *s, char *base)
 		j = -1;
 		while (base[++j])
 		{
-			if (s[i] == base[j])
+			if (cap(s[i]) == base[j])
 				break ;
 		}
 		color = color * strlen(base) + j;

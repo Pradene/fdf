@@ -108,4 +108,3 @@ void	clean_stash(char **stash)
 	free(*stash);
 	*stash = s;
 }
-

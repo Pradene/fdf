@@ -17,15 +17,19 @@ int	key(int keycode, t_data *data)
 	if (keycode == 99)
 		data->view = (data->view + 1) % 2;
 	if (keycode == 116)
-		data->angleZ = (data->angleZ + 1) % 360;
+		data->angleZ += 1;
 	if (keycode == 114)
-		data->angleX = (data->angleY + 1) % 360;
+		data->angleX += 1;
 	if (keycode == 101)
-		data->angleY = (data->angleX + 1) % 360;
+		data->angleY += 1;
 	if (keycode == 61)
 		data->scale += 0.01;
 	else if (keycode == 45 && data->scale > 0.1)
 		data->scale -= 0.01;
+	if (keycode == 102)
+		data->scale_h += 0.01;
+	else if (keycode == 103 && data->scale_h > 0.1)
+		data->scale_h -= 0.01;
 	if (keycode == 97)
 		data->offx -= 1;
 	else if (keycode == 100)
