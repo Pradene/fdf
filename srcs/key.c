@@ -27,11 +27,11 @@ int	key(int keycode, t_data *data)
 {
 	_key(keycode, data);
 	if (keycode == 116)
-		data->angleZ += 1;
+		data->angle_z += 1;
 	if (keycode == 114)
-		data->angleX += 1;
+		data->angle_x += 1;
 	if (keycode == 101)
-		data->angleY += 1;
+		data->angle_y += 1;
 	if (keycode == 61)
 		data->scale += 0.01;
 	else if (keycode == 45 && data->scale > 0.1)

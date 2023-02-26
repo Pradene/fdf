@@ -47,9 +47,9 @@ int	main(int argc, char **argv)
 	data.dist = 6;
 	data.view = 0;
 	data.radius = 300;
-	data.angleX = 45;
-	data.angleY = 45;
-	data.angleZ = 0;
+	data.angle_x = 45;
+	data.angle_y = 45;
+	data.angle_z = 0;
 	data.scale = 1.0;
 	data.scale_h = 1.0;
 	run(&data);

@@ -15,18 +15,18 @@
 static int	get_offy(t_data *data)
 {
 	return (data->offy + HEIGHT / 2
-		- sin(rad(data->angleY))
+		- sin(rad(data->angle_y))
 		* (data->map.width * data->dist * data->scale / 2 / 2)
-		- cos(rad(data->angleY))
+		- cos(rad(data->angle_y))
 		* (data->map.height * data->dist * data->scale / 2 / 2));
 }
 
 static int	get_offx(t_data *data)
 {
 	return (data->offx + WIDTH / 2
-		- cos(rad(data->angleY))
+		- cos(rad(data->angle_y))
 		* (data->map.width * data->dist * data->scale / 2)
-		+ sin(rad(data->angleY))
+		+ sin(rad(data->angle_y))
 		* (data->map.height * data->dist * data->scale / 2));
 }
 
@@ -35,7 +35,7 @@ static t_pos	get_pos(t_data *data, t_point p, float d)
 	t_pos	pos;
 	float	radian;
 
-	radian = rad(data->angleY);
+	radian = rad(data->angle_y);
 	pos.x = get_offx(data) + cos(radian) * (p.x * d) - sin(radian) * (p.y * d);
 	pos.y = get_offy(data) + sin(radian)
 		* (p.x * d / 2) + cos(radian) * (p.y * d / 2)

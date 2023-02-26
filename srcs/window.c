@@ -38,9 +38,9 @@ static int	render(t_data *data)
 {
 	if (!data->win)
 		return (1);
-	data->angleX += 1;
-	data->angleY += 1;
-	data->angleZ += 1;
+	data->angle_x += 1;
+	data->angle_y += 1;
+	data->angle_z += 1;
 	reinitialize_img(&data->img);
 	draw_view(data);
 	mlx_put_image_to_window(data->id, data->win, data->img.image, 0, 0);

@@ -47,9 +47,9 @@ static t_pos	get_pos(t_data *data, t_point p, int x, int y)
 	pos.x = -1;
 	pos.y = -1;
 	point = get_point(data, p, x, y);
-	point = get_x(point, rad(data->angleX));
-	point = get_y(point, rad(data->angleY));
-	point = get_z(point, rad(data->angleZ));
+	point = get_x(point, rad(data->angle_x));
+	point = get_y(point, rad(data->angle_y));
+	point = get_z(point, rad(data->angle_z));
 	if (point.z < 0)
 		return (pos);
 	pos.x = get_offx(data) + point.x;
