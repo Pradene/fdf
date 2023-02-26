@@ -12,12 +12,20 @@
 
 #include "../includes/fdf.h"
 
-int	key(int keycode, t_data *data)
+int	_key(int keycode, t_data *data)
 {
 	if (keycode == 104)
 		data->help = (data->help + 1) % 2;
 	if (keycode == 99)
 		data->view = (data->view + 1) % 2;
+	if (keycode == 65307)
+		quit(data);
+	return (0);
+}
+
+int	key(int keycode, t_data *data)
+{
+	_key(keycode, data);
 	if (keycode == 116)
 		data->angleZ += 1;
 	if (keycode == 114)
@@ -40,7 +48,5 @@ int	key(int keycode, t_data *data)
 		data->offy += 1;
 	else if (keycode == 119)
 		data->offy -= 1;
-	if (keycode == 65307)
-		quit(data);
 	return (0);
 }

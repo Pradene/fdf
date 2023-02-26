@@ -43,36 +43,40 @@ static t_pos	get_pos(t_data *data, t_point p, float d)
 	return (pos);
 }
 
+static void	render_lines(t_data *data, int x, int y)
+{
+	t_pos	pos;
+
+	if (y + 1 != data->map.height)
+		render_line(data,
+			get_pos(data, data->map.points[y][x], data->dist * data->scale),
+			get_pos(data, data->map.points[y + 1][x], data->dist * data->scale),
+			get_gradient(data->map.points[y][x].color,
+				data->map.points[y + 1][x].color));
+	if (x + 1 != data->map.width)
+		render_line(data,
+			get_pos(data, data->map.points[y][x], data->dist * data->scale),
+			get_pos(data, data->map.points[y][x + 1], data->dist * data->scale),
+			get_gradient(data->map.points[y][x].color,
+				data->map.points[y][x + 1].color));
+	if ((x == data->map.width - 1) && (y == data->map.height - 1))
+	{
+		pos = get_pos(data, data->map.points[y][x], data->dist * data->scale);
+		pixel_put(&data->img, pos.x, pos.y,
+			data->map.points[y][x].color);
+	}
+}
+
 void	draw_iso(t_data *data)
 {
 	int32_t	y;
 	int32_t	x;
-	t_pos	pos;
 
 	y = -1;
 	while (++y < data->map.height)
 	{
 		x = -1;
 		while (++x < data->map.width)
-		{
-			if (y + 1 != data->map.height)
-				render_line(data,
-					get_pos(data, data->map.points[y][x], data->dist * data->scale),
-					get_pos(data, data->map.points[y + 1][x], data->dist * data->scale),
-					get_gradient(data->map.points[y][x].color,
-						data->map.points[y + 1][x].color));
-			if (x + 1 != data->map.width)
-				render_line(data,
-					get_pos(data, data->map.points[y][x], data->dist * data->scale),
-					get_pos(data, data->map.points[y][x + 1], data->dist * data->scale),
-					get_gradient(data->map.points[y][x].color,
-						data->map.points[y][x + 1].color));
-			if ((x == data->map.width - 1) && (y == data->map.height - 1))
-			{
-				pos = get_pos(data, data->map.points[y][x], data->dist * data->scale);
-				pixel_put(&data->img, pos.x, pos.y,
-					data->map.points[y][x].color);
-			}
-		}
+			render_lines(data, x, y);
 	}
 }

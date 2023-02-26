@@ -12,7 +12,7 @@
 
 #include "../includes/fdf.h"
 
-char	cap(char c)
+static char	cap(char c)
 {
 	if (c >= 'a' && c <= 'z')
 		c -= 32;

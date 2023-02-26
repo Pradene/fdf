@@ -103,6 +103,9 @@ void	    draw_iso(t_data *data);
 
 // SPHERE
 void        draw_sphere(t_data *data);
+t_point	    get_x(t_point p, float radian);
+t_point	    get_y(t_point p, float radian);
+t_point	    get_z(t_point p, float radian);
 
 // HELP
 void        help(t_data *data);

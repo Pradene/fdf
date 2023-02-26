@@ -9,6 +9,7 @@ FILES	= gnl/get_next_line_utils.c \
 		main.c \
 		parse.c \
 		pixel_put.c \
+		sphere_utils.c \
 		sphere.c \
 		utils.c \
 		window.c
