@@ -14,6 +14,8 @@
 
 int	key(int keycode, t_data *data)
 {
+	if (keycode == 104)
+		data->help = (data->help + 1) % 2;
 	if (keycode == 99)
 		data->view = (data->view + 1) % 2;
 	if (keycode == 116)
@@ -28,7 +30,7 @@ int	key(int keycode, t_data *data)
 		data->scale -= 0.01;
 	if (keycode == 102)
 		data->scale_h += 0.01;
-	else if (keycode == 103 && data->scale_h > 0.1)
+	else if (keycode == 103)
 		data->scale_h -= 0.01;
 	if (keycode == 97)
 		data->offx -= 1;

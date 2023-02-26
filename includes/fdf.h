@@ -71,17 +71,19 @@ typedef struct s_data
     int32_t     radius;
     float       scale;
     float       scale_h;
+    int         help;
 }   t_data;
 
 // GNL
-char	*get_next_line(int fd);
+char	    *get_next_line(int fd);
 
 // PARSE
-char    **parse(char *path);
-void    free_map(char **map);
+char        **parse(char *path);
+void        free_map(char **map);
 
 // COLOR
-int32_t get_color(char *s);
+int32_t     get_color(char *s);
+int	        get_pix_color(t_image *img, int x, int y);
 
 // UTILS
 int         get_max(int n1, int n2);
@@ -91,20 +93,23 @@ void	    render_line(t_data *data, t_pos p1, t_pos p2, t_gradient colors);
 float	    rad(int angle);
 
 // MAP
-t_map   get_map(char **map);
+t_map       get_map(char **map);
 
 // QUIT
-int     quit(t_data *data);
+int         quit(t_data *data);
 
 // ISO
-void	draw_iso(t_data *data);
+void	    draw_iso(t_data *data);
 
 // SPHERE
-void    draw_sphere(t_data *data);
+void        draw_sphere(t_data *data);
+
+// HELP
+void        help(t_data *data);
 
 // WINDOW
-void    run(t_data *data);
-int     key(int keycode, t_data *data);
-void    pixel_put(t_image *img, int x, int y, int color);
+void        run(t_data *data);
+int         key(int keycode, t_data *data);
+void        pixel_put(t_image *img, int x, int y, int color);
 
 #endif

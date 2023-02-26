@@ -1,6 +1,8 @@
 FILES	= gnl/get_next_line_utils.c \
 		gnl/get_next_line.c \
 		get_color.c \
+		get_pix_color.c \
+		help.c \
 		iso.c \
 		key.c \
 		map.c \

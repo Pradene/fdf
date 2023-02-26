@@ -39,7 +39,7 @@ static t_pos	get_pos(t_data *data, t_point p, float d)
 	pos.x = get_offx(data) + cos(radian) * (p.x * d) - sin(radian) * (p.y * d);
 	pos.y = get_offy(data) + sin(radian)
 		* (p.x * d / 2) + cos(radian) * (p.y * d / 2)
-		- p.z * data->scale_h;
+		- p.z * data->scale_h * data->scale;
 	return (pos);
 }
 

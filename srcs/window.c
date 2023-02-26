@@ -44,6 +44,8 @@ static int	render(t_data *data)
 	reinitialize_img(&data->img);
 	draw_view(data);
 	mlx_put_image_to_window(data->id, data->win, data->img.image, 0, 0);
+	if (data->help)
+		help(data);
 	return (0);
 }
 

@@ -41,6 +41,7 @@ int	main(int argc, char **argv)
 	if (!map)
 		return (0);
 	data.map = get_map(map);
+	data.help = 1;
 	data.offx = 0;
 	data.offy = 0;
 	data.dist = 6;
