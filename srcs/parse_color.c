@@ -19,7 +19,7 @@ static char	cap(char c)
 	return (c);
 }
 
-static int32_t	parse_color(char *s, char *base)
+static int32_t	get_color(char *s, char *base)
 {
 	int32_t	i;
 	int32_t	j;
@@ -42,7 +42,7 @@ static int32_t	parse_color(char *s, char *base)
 	return (color);
 }
 
-int32_t	get_color(char *s)
+int32_t	parse_color(char *s)
 {
 	int32_t	i;
 
@@ -50,7 +50,7 @@ int32_t	get_color(char *s)
 	while (s[i] && s[i] != ' ' && s[i] != '\n')
 	{
 		if (s[i] == ',')
-			return (parse_color(&s[i + 1], "0123456789ABCDEF"));
+			return (get_color(&s[i + 1], "0123456789ABCDEF"));
 		++i;
 	}
 	return (-1);

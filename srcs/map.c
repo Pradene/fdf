@@ -64,7 +64,7 @@ static t_point	*get_point(char *s, int32_t height, int32_t width)
 	points = (t_point *)malloc(sizeof(t_point) * (width));
 	while (++i < width)
 	{
-		points[i].color = get_color(&s[j]);
+		points[i].color = parse_color(&s[j]);
 		points[i].z = atoi(&s[j]);
 		points[i].x = i;
 		points[i].y = height;

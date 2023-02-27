@@ -92,9 +92,9 @@ char		*get_next_line(int fd);
 // PARSE
 char		**parse(char *path);
 void		free_map(char **map);
+int32_t		parse_color(char *s);
 
 // COLOR
-int32_t		get_color(char *s);
 int			get_pix_color(t_image *img, int x, int y);
 
 // UTILS
